@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional ID Card Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-atmosphere"></div>
+    <div class="bg-grid"></div>
+
+    <main class="relative z-10 min-h-screen flex items-center justify-center p-6">
+
+        <!-- Form Section -->
+        <section id="formSection" class="form-container">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Create Your Card</h1>
+                <p class="text-base text-gray-500 font-light">Professional identity, reimagined</p>
+            </div>
+
+            <form id="cardForm" class="relative h-48">
+                <!-- Step 1: Name -->
+                <div class="form-step active" data-step="1">
+                    <label class="input-label">Your Name</label>
+                    <input type="text" class="input-field" id="nameInput" placeholder="John Anderson"
+                        autocomplete="name" required>
+                    <div class="flex justify-end mt-8">
+                        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Age -->
+                <div class="form-step" data-step="2">
+                    <label class="input-label">Your Age</label>
+                    <input type="number" class="input-field" id="ageInput" placeholder="32" min="18" max="100" required>
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="btn-reset" onclick="prevStep()">Back</button>
+                        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Profession -->
+                <div class="form-step" data-step="3">
+                    <label class="input-label">Profession</label>
+                    <input type="text" class="input-field" id="professionInput" placeholder="Software Engineer"
+                        required>
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="btn-reset" onclick="prevStep()">Back</button>
+                        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Experience -->
+                <div class="form-step" data-step="4">
+                    <label class="input-label">Years of Experience</label>
+                    <input type="number" class="input-field" id="experienceInput" placeholder="8" min="0" max="60"
+                        required>
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="btn-reset" onclick="prevStep()">Back</button>
+                        <button type="button" class="btn-primary" onclick="generateCard()">Generate Card</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Step Indicators -->
+            <div class="step-indicator mt-10">
+                <div class="step-dot active" data-dot="1"></div>
+                <div class="step-dot" data-dot="2"></div>
+                <div class="step-dot" data-dot="3"></div>
+                <div class="step-dot" data-dot="4"></div>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section id="resultSection" class="result-section">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">Your Professional Card</h2>
+                <p class="text-sm text-gray-500 font-light">Hover to interact, download to share</p>
+            </div>
+
+            <div class="card-wrapper" id="cardWrapper">
+                <div class="professional-card" id="professionalCard">
+                    <div class="card-bg"></div>
+                    <div class="card-glass"></div>
+                    <div class="card-shine"></div>
+
+                    <!-- Holographic Logo -->
+                    <div class="holo-logo">PRO</div>
+
+                    <div class="card-content">
+                        <div>
+                            <!-- Smart Chip -->
+                            <div class="smart-chip">
+                                <div class="chip-lines">
+                                    <div class="chip-line"></div>
+                                    <div class="chip-line"></div>
+                                    <div class="chip-line"></div>
+                                </div>
+                            </div>
+
+                            <!-- Card Number Decoration -->
+                            <div class="card-number" id="cardNumber"></div>
+
+                            <!-- Name -->
+                            <div class="card-name" id="cardName"></div>
+
+                            <!-- Profession -->
+                            <div class="card-profession" id="cardProfession"></div>
+                        </div>
+
+                        <!-- Experience -->
+                        <div class="card-experience">
+                            <div class="card-experience-label">Experience</div>
+                            <div class="card-experience-value" id="cardExperience"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-section flex items-center gap-4 mt-10">
+                <button class="btn-download" onclick="downloadCard()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download Card
+                </button>
+                <button class="btn-reset text-sm" onclick="resetForm()">Create Another</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
